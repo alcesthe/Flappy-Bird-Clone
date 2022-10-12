@@ -4,8 +4,9 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] float speed = 5;
+    [SerializeField] private float rangeToDestroy = -10f;
     private GameObject player;
-
+    
     private bool isAdded = false;
 
     private void Start()
@@ -17,6 +18,15 @@ public class Obstacle : MonoBehaviour
  	{
         ScoreAdd();
         MovingObject();
+        DestroyWhenOutRange();
+    }
+
+    private void DestroyWhenOutRange()
+    {
+        if (transform.position.x < rangeToDestroy)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void ScoreAdd()

@@ -34,7 +34,7 @@ public class Pipe : MonoBehaviour
 
 		if(distanceX <= (playerSizeX + pipeSizeX) && distanceY <= (playerSizeY + pipeSizeY))
         {
-			Debug.Log("TRUE");
+			Debug.Log("Pipe Hit");
         }
 	}
 }
