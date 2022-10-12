@@ -4,9 +4,14 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] float speed = 5;
-    [SerializeField] public Player player;
+    private GameObject player;
 
     private bool isAdded = false;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     void Update()
  	{
