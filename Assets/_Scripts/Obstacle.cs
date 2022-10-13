@@ -18,7 +18,10 @@ public class Obstacle : MonoBehaviour
     void Update()
  	{
         ScoreAdd();
-        MovingObject();
+        if (GameManager.instace.state == GameManager.GameState.Playing)
+        {
+            MovingObject();
+        }
         DestroyWhenOutRange();
     }
 

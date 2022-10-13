@@ -10,9 +10,19 @@ public class GameManager : MonoBehaviour
 		Lost
     }
 
+    public enum PowerUp
+    {
+        None,
+        Strength,
+        Slow,
+        Explosion
+    }
+
 	public static GameManager instace;
     public int score = 0;
     public GameState state;
+    public PowerUp currentPowerUp;
+    public bool isPowerUpActive = false;
 
     
     [SerializeField] GameObject playPanel;
@@ -41,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         ChangeState(GameState.Start);
+        currentPowerUp = PowerUp.None;
     }
 
     public void ChangeState(GameState changedState)

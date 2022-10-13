@@ -14,6 +14,7 @@ public class LostPanel : MonoBehaviour
 		{
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 			GameManager.instace.ResetAction();
+			Player.ClearPowerUpAction();
 		});
 	}
 

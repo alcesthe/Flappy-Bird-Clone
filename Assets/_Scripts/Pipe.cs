@@ -34,7 +34,15 @@ public class Pipe : MonoBehaviour
 
 		if(distanceX <= (playerSizeX + pipeSizeX) && distanceY <= (playerSizeY + pipeSizeY))
         {
-			GameManager.instace.ChangeState(GameManager.GameState.Lost);
+			if (player.GetComponent<Player>().isInvicible)
+            {
+				Destroy(gameObject);
+            }
+            else
+            {
+				GameManager.instace.ChangeState(GameManager.GameState.Lost);
+			}
+			
         }
 	}
 }

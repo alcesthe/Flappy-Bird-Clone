@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 65664277}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Pipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,6 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalSpeed: 7
   timeToGetDown: 0.25
+  upperBounder: 4.5
+  jumpSound: {fileID: 0}
+  deadSound: {fileID: 0}
 --- !u!95 &65664277
 Animator:
   serializedVersion: 3

@@ -13,6 +13,12 @@ public class Player : MonoBehaviour
 
     private float timer;
     private Vector2 direction;
+    private static event Action powerUpAction;
+    private static event Action powerUpActionDelay;
+    private float delayActionTime = 0;
+
+    public bool isInvicible = false;
+    public AudioClip powerUpSound;
 
     private void Start()
     {
@@ -53,16 +59,66 @@ public class Player : MonoBehaviour
 
     public void Dead()
     {
-        /*StartCoroutine("PlayDeadTrigger");*/
         AudioSystem.PlaySound(deadSound);
-        gameObject.SetActive(false);
+        transform.position = new Vector2(-10, 0);
+        if (powerUpActionDelay != null)
+        {
+            powerUpActionDelay?.Invoke();
+        }
     }
 
-/*    IEnumerator PlayDeadTrigger()
+    // Action
+    public void PlayPowerUp()
     {
-        transform.Translate(Vector2.up * Time.deltaTime * 10);
-        yield return new WaitForSeconds(0.2f);
-        transform.Translate(Vector2.down * Time.deltaTime * 20);
+        if (powerUpSound != null)
+        {
+            AudioSystem.PlaySound(powerUpSound);
+            powerUpSound = null;
+        }
+
+        powerUpAction?.Invoke();
+        if (powerUpActionDelay != null)
+        {
+            StartCoroutine(PlayerPowerUpDelay());
+        }
+        else
+        {
+            ClearPowerUpAction();
+        }
     }
-*/
+
+    IEnumerator PlayerPowerUpDelay()
+    {
+        GameManager.instace.isPowerUpActive = true;
+        yield return new WaitForSeconds(delayActionTime);
+        powerUpActionDelay?.Invoke();
+        delayActionTime = 0; // Reset;
+        GameManager.instace.isPowerUpActive = false;
+        ClearPowerUpAction();
+    }
+    
+    public static void ClearPowerUpAction()
+    {
+        powerUpAction = null;
+        powerUpActionDelay = null;
+    }
+
+    public void SetPowerUpAction(Action action) => powerUpAction = action;
+    public void SetPowerUpDelayAction(Action action, float delayTime)
+    {
+        powerUpActionDelay = action;
+        delayActionTime = delayTime;
+    }
+
+    public bool CheckPowerUpIsAvailable()
+    {
+        if (powerUpAction != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
