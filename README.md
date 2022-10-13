@@ -1,4 +1,4 @@
-# Flappy-Bird-Clone
+# Flappy Bird Clone
 
 ## Test Requirement
 ### Not using Unity Physics (Collider, Rigid Body,...)
