@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     [SerializeField] float timeToGetDown = 0.25f;
     [SerializeField] float upperBounder = 4.5f;
 
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip deadSound;
+
     private float timer;
     private Vector2 direction;
 
@@ -18,7 +21,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        PlayerMovement();
+        if (GameManager.instace.state == GameManager.GameState.Playing)
+        {
+            PlayerMovement();
+        }
     }
 
     private void PlayerMovement()
@@ -31,6 +37,7 @@ public class Player : MonoBehaviour
         // Jump Input
         if (Input.GetMouseButtonDown(0))
         {
+            AudioSystem.PlaySound(jumpSound);
             timer = 0;
         }
 
@@ -44,4 +51,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Dead()
+    {
+        /*StartCoroutine("PlayDeadTrigger");*/
+        AudioSystem.PlaySound(deadSound);
+        gameObject.SetActive(false);
+    }
+
+/*    IEnumerator PlayDeadTrigger()
+    {
+        transform.Translate(Vector2.up * Time.deltaTime * 10);
+        yield return new WaitForSeconds(0.2f);
+        transform.Translate(Vector2.down * Time.deltaTime * 20);
+    }
+*/
 }

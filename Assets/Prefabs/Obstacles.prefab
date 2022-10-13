@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  rangeToDestroy: -10
+  scoreSound: {fileID: 8300000, guid: 3da531416d574b6449b5866f5274d34a, type: 3}
 --- !u!1001 &685783355462655118
 PrefabInstance:
   m_ObjectHideFlags: 0

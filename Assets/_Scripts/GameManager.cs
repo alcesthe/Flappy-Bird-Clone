@@ -11,7 +11,21 @@ public class GameManager : MonoBehaviour
     }
 
 	public static GameManager instace;
-	void Awake()
+    public int score = 0;
+    public GameState state;
+
+    
+    [SerializeField] GameObject playPanel;
+    [SerializeField] GameObject startPanel;
+    [SerializeField] GameObject lostPanel;
+
+    public static event Action onBeforeChange;
+    public static event Action onAfterChange;
+
+    private GameObject player;
+    private bool isLost = false;
+
+    void Awake()
 	{
 		if (instace != null)
         {
@@ -20,15 +34,21 @@ public class GameManager : MonoBehaviour
         else
         {
 			instace = this;
-			DontDestroyOnLoad(gameObject);
         }
 	}
 
-    private void Start() => ChangeState(GameState.Start);
-
-    public void ChangeState(GameState state)
+    private void Start() 
     {
-        switch (state)
+        player = GameObject.FindGameObjectWithTag("Player");
+        ChangeState(GameState.Start);
+    }
+
+    public void ChangeState(GameState changedState)
+    {
+        onBeforeChange?.Invoke();
+
+        state = changedState;
+        switch (changedState)
         {
 			case GameState.Start:
 				HandleStart();
@@ -40,20 +60,38 @@ public class GameManager : MonoBehaviour
 				HandleLost();
 				break;
 		}
-    }
 
-    private void HandleLost()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void HandlePlaying()
-    {
-        throw new NotImplementedException();
+        onAfterChange?.Invoke();
     }
 
     private void HandleStart()
     {
-        throw new NotImplementedException();
+        startPanel.SetActive(true);
+        onBeforeChange = delegate
+        {
+            startPanel.SetActive(false);
+        };
+    }
+
+    private void HandleLost()
+    {
+        if (!isLost)
+        {
+            player.GetComponent<Player>().Dead();
+            lostPanel.SetActive(true);
+            lostPanel.GetComponent<LostPanel>().Flash();
+            isLost = true;
+        }
+    }
+
+    private void HandlePlaying()
+    {
+        Debug.Log("Playing");
+    }
+
+    public void ResetAction()
+    {
+        onBeforeChange = null;
+        onAfterChange = null;
     }
 }

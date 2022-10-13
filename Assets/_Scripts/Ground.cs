@@ -18,7 +18,7 @@ public class Ground : MonoBehaviour
         float distanceY = player.transform.position.y - transform.position.y;
         if (distanceY <= (playerSpriteRenderer.bounds.extents.y + groundSpriteRenderer.bounds.extents.y))
         {
-			Debug.Log("Ground hit");
+            GameManager.instace.ChangeState(GameManager.GameState.Lost);
         }
 	}
 }

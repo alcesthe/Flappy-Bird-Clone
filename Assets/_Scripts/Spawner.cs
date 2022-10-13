@@ -17,7 +17,10 @@ public class Spawner : MonoBehaviour
 
     private void SpawnObstacles()
     {
-		Vector2 spawnPoint = new Vector2(transform.position.x, Random.Range(lowerRangeY, upperRangeY));
-		Instantiate(obstaclePrefab, spawnPoint, transform.rotation);
+		if (GameManager.instace.state == GameManager.GameState.Playing)
+		{
+			Vector2 spawnPoint = new Vector2(transform.position.x, Random.Range(lowerRangeY, upperRangeY));
+			Instantiate(obstaclePrefab, spawnPoint, transform.rotation);
+		}
     }
 }

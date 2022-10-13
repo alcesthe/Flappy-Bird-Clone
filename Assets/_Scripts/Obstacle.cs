@@ -5,6 +5,7 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] float speed = 5;
     [SerializeField] private float rangeToDestroy = -10f;
+    [SerializeField] AudioClip scoreSound;
     private GameObject player;
     
     private bool isAdded = false;
@@ -33,7 +34,8 @@ public class Obstacle : MonoBehaviour
     {
         if (!isAdded && gameObject.transform.position.x < player.transform.position.x)
         {
-            Debug.Log("Score Added");
+            GameManager.instace.score += 1;
+            AudioSystem.PlaySound(scoreSound);
             isAdded = true;
         }
     }
