@@ -16,3 +16,11 @@ if (distanceX <= (playerSizeX + pipeSizeX) && distanceY <= (playerSizeY + pipeSi
    // Lost Trigger
 }
 ```
+### Add more features to the Flappy Bird
+I add new features to the game. It's the Power Up system. The player may acquire power ups and use them to increase their score. There are currently three power ups:
+- Explosion: Destroy all the pipe.
+- Slow: Decrease the speed of time.
+- Power: The player can pass through the pipe.
+
+## Gameplay Video
+
