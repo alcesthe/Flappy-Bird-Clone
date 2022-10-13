@@ -1,6 +1,6 @@
 # Flappy-Bird-Clone
 
-## Requirement
+## Test Requirement
 ### Not using Unity Physics (Collider, Rigid Body,...)
 Know collide through position of the player and the obstacle. 
 Formula: Distance of the player <= (size of the player + size of the pipe)
@@ -23,4 +23,4 @@ I add new features to the game. It's the Power Up system. The player may acquire
 - Power: The player can pass through the pipe.
 
 ## Gameplay Video
-
+[<img src="https://img.youtube.com/vi/BE5DVxLChNE/hqdefault.jpg" width="50%">](https://youtu.be/BE5DVxLChNE "Flappy Bird Clone")
