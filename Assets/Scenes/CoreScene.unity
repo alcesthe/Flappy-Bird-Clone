@@ -414,7 +414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -61.57}
+  m_AnchoredPosition: {x: 0, y: -201}
   m_SizeDelta: {x: 0, y: 123.141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &576979434
@@ -2089,11 +2089,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8391947284231343197, guid: 8ba7d571b6b10664695dbc81972b5e67, type: 3}
       propertyPath: spawnRate
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8391947284231343197, guid: 8ba7d571b6b10664695dbc81972b5e67, type: 3}
       propertyPath: percentageOfPowerUp
-      value: 1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8391947284231343197, guid: 8ba7d571b6b10664695dbc81972b5e67, type: 3}
       propertyPath: powerUpPrefab.Array.size
